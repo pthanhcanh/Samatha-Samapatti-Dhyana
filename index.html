@@ -14,7 +14,7 @@
     <!-- Visualization & Content Choices: 
         1. 25 Methods: Report Info -> List of 25 methods categorized by 6 Trần, 6 Căn, 6 Thức, 7 Đại. Goal -> Organize & Compare. Viz/Method -> Interactive Doughnut Chart (Chart.js) & dynamic text cards. Interaction -> Clicking a chart segment filters the cards to show only methods in that category. Justification -> Visually represents the categories and their proportions, while interaction allows focused exploration without overwhelming the user with a long list. Library -> Chart.js.
         2. 6 Stages of Ear Practice: Report Info -> A 6-step sequential process. Goal -> Show Change/Process. Viz/Method -> Vertical Stepper/Timeline (HTML/CSS/JS). Interaction -> Clicking a step highlights it and reveals its detailed explanation. Justification -> Clearly visualizes the progression and allows the user to study each stage in detail. Library -> Vanilla JS.
-        3. 50 Skandha-maras: Report Info -> 30 detailed descriptions of demonic states across 3 Skandhas. Goal -> Organize & Inform. Viz/Method -> Tabbed interface with accordions (HTML/CSS/JS). Interaction -> Users select a Skandha (tab), then click on a specific state to expand its details (phenomenon, cause, correct view). Justification -> Manages a large volume of complex text in a structured, accessible way, preventing cognitive overload. Library -> Vanilla JS.
+        3. 50 Skandha-maras: Report Info -> 50 detailed descriptions of demonic states across 5 Skandhas. Goal -> Organize & Inform. Viz/Method -> Tabbed interface with accordions (HTML/CSS/JS). Interaction -> Users select a Skandha (tab), then click on a specific state to expand its details (phenomenon, cause, correct view). Justification -> Manages a large volume of complex text in a structured, accessible way, preventing cognitive overload. Library -> Vanilla JS.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -23,7 +23,7 @@
             background-color: #FAF9F6;
             color: #4a4a4a;
         }
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             color: #5D4037;
         }
@@ -73,7 +73,7 @@
 
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Kinh Thủ Lăng Nghiêm</h1>
+            <h1 class="text-xl md:text-2xl font-bold">Kinh Thủ Lăng Nghiêm</h1>
             <div class="hidden md:flex space-x-8">
                 <a href="#gioi-thieu" class="nav-link">Giới Thiệu</a>
                 <a href="#phap-mon" class="nav-link">Pháp Môn</a>
@@ -137,7 +137,7 @@
                     <ul class="space-y-2 text-gray-700">
                         <li class="flex items-start"><span class="mr-2 mt-1 text-teal-600">✦</span> <strong>Viên Mãn:</strong> Tròn đầy, không thiếu sót.</li>
                         <li class="flex items-start"><span class="mr-2 mt-1 text-teal-600">✦</span> <strong>Thông Suốt:</strong> Không ngăn ngại, tự tại.</li>
-                        <li class="flex items-start"><span class="mr-2 mt-1 text-teal-600">✦</span> <strong>Nhất Căn Phản Nguyên, Lục Căn Giải Thoát:</strong> Một căn trở về nguồn, sáu căn đều được giải thoát, hoạt động hỗ tương.</li>
+                        <li class="flex items-start"><span class="mr-2 mt-1 text-teal-600">✦</span> <strong>Nhất Căn Phản Nguyên, Lục Căn Giải Thoát:</strong> Một căn trở về nguồn, sáu căn đều được giải thoát.</li>
                     </ul>
                 </div>
             </div>
@@ -155,7 +155,6 @@
                     <canvas id="phapMonChart"></canvas>
                 </div>
                 <div id="phapMonDetails" class="space-y-4">
-                    
                 </div>
             </div>
         </section>
@@ -164,7 +163,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold">Pháp Tu Trọng Yếu: Nhĩ Căn Viên Thông</h2>
                 <p class="max-w-3xl mx-auto mt-4 text-gray-600">
-                    Bồ tát Văn Thù đã chọn pháp môn của Bồ tát Quán Thế Âm là phù hợp nhất cho chúng sanh cõi Ta Bà. Đây là lộ trình tu chứng "từ trong cái nghe mà vào", gồm 6 giai đoạn tuần tự để cởi bỏ trói buộc.
+                    Bồ tát Văn Thù đã chọn pháp môn của Bồ tát Quán Thế Âm là phù hợp nhất cho chúng sanh cõi Ta Bà. Đây là lộ trình tu chứng "từ trong cái nghe mà vào", gồm 6 giai đoạn tuần tự để cởi bỏ sáu cái kết trói buộc.
                 </p>
             </div>
             <div id="nhiCanStepper" class="max-w-3xl mx-auto">
@@ -203,16 +202,19 @@
                 <p class="max-w-3xl mx-auto mt-4 text-gray-600">
                     Một trong những đóng góp vĩ đại nhất của Kinh là chỉ rõ 50 trạng thái tâm lý-sinh lý sai lệch có thể phát sinh khi công phu làm tan rã 5 ấm (Sắc, Thọ, Tưởng, Hành, Thức). Đây là bản đồ tâm lý vô giá giúp hành giả không bị lạc lối.
                 </p>
-                <p class="mt-4 font-semibold text-amber-800 bg-amber-100 p-3 rounded-lg max-w-2xl mx-auto">
-                    Chìa khóa vượt qua: "Không khởi tâm cho rằng mình đã chứng Thánh, thì đó là cảnh giới tốt; nếu cho đó là sự chứng Thánh, thì liền bị các loài tà ma chiêu cảm."
-                </p>
+                <div class="mt-6 font-semibold text-amber-800 bg-amber-100 p-4 rounded-lg max-w-3xl mx-auto">
+                    <h4 class="text-lg font-bold mb-2 text-center">Phương Pháp Hàng Phục Chung</h4>
+                    <p class="text-center">Chìa khóa để vượt qua tất cả 50 loại ấm ma nằm gọn trong một nguyên tắc duy nhất: <strong class="block mt-1">"Không khởi tâm cho rằng mình đã chứng Thánh, thì đó là cảnh giới tốt; nếu cho đó là sự chứng Thánh, thì liền bị các loài tà ma chiêu cảm."</strong></p>
+                </div>
             </div>
             
             <div class="max-w-4xl mx-auto">
-                <div class="mb-4 flex justify-center border-b border-gray-300">
-                    <button data-tab="sac" class="tab-button py-2 px-6 text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition active">Sắc Ấm</button>
-                    <button data-tab="tho" class="tab-button py-2 px-6 text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition">Thọ Ấm</button>
-                    <button data-tab="tuong" class="tab-button py-2 px-6 text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition">Tưởng Ấm</button>
+                <div class="mb-4 flex flex-wrap justify-center border-b border-gray-300">
+                    <button data-tab="sac" class="tab-button py-2 px-4 md:px-6 text-base md:text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition active">Sắc Ấm</button>
+                    <button data-tab="tho" class="tab-button py-2 px-4 md:px-6 text-base md:text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition">Thọ Ấm</button>
+                    <button data-tab="tuong" class="tab-button py-2 px-4 md:px-6 text-base md:text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition">Tưởng Ấm</button>
+                    <button data-tab="hanh" class="tab-button py-2 px-4 md:px-6 text-base md:text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition">Hành Ấm</button>
+                    <button data-tab="thuc" class="tab-button py-2 px-4 md:px-6 text-base md:text-lg font-semibold border-b-2 border-transparent hover:border-amber-600 hover:text-amber-700 transition">Thức Ấm</button>
                 </div>
 
                 <div id="maSuContent" class="mt-8">
@@ -262,28 +264,28 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         nhiCan: [
             {
-                title: '1. Nhập lưu vong sở',
-                description: 'Ban đầu ở trong cái nghe, xoay năng lực nghe vào trong (nhập lưu) thay vì đuổi theo âm thanh bên ngoài. Khi sự chú tâm vào "tánh nghe" trở nên miên mật, đối tượng âm thanh (sở văn) sẽ tự động bị quên lãng (vong sở). Đây là bước phá vỡ sự chấp trước vào tướng Động (có tiếng).'
+                title: '1. Sơ ư văn trung, nhập lưu vong sở',
+                description: 'Ban đầu ở trong cái nghe, xoay năng lực nghe vào trong (nhập lưu) thay vì đuổi theo âm thanh bên ngoài. Khi sự chú tâm vào "tánh nghe" trở nên miên mật, đối tượng âm thanh (sở văn) sẽ tự động bị quên lãng (vong sở). Đây là bước phá vỡ kết Động (chấp vào âm thanh có).'
             },
             {
-                title: '2. Sở nhập ký tịch',
-                description: 'Khi đối tượng âm thanh đã lặng, hành giả không kẹt vào trạng thái tĩnh lặng đối lập. Cả hai tướng Động (có tiếng) và Tĩnh (không tiếng) đều được nhận ra là những trạng thái đối đãi, hư vọng và không còn khởi lên trong tâm. Đây là bước phá vỡ sự chấp trước vào tướng Tĩnh (không tiếng).'
+                title: '2. Sở nhập ký tịch, động tĩnh nhị tướng, liễu nhiên bất sinh',
+                description: 'Khi đối tượng âm thanh đã lặng, hành giả không kẹt vào trạng thái tĩnh lặng đối lập. Cả hai tướng Động (có tiếng) và Tĩnh (không tiếng) đều được nhận ra là những trạng thái đối đãi, hư vọng và không còn khởi lên trong tâm. Đây là bước phá vỡ kết Tĩnh (chấp vào âm thanh không).'
             },
             {
-                title: '3. Văn sở văn tận',
-                description: 'Công phu tiến sâu hơn, cả năng lực nghe (năng văn) và đối tượng bị nghe (sở văn) đều được quán chiếu là không thật, do duyên sinh. Cuối cùng, cả hai đều tan biến. Đây là giai đoạn phá vỡ sự chấp trước vào chính Nhĩ căn (cái tai).'
+                title: '3. Như thị tiệm tăng, văn sở văn tận',
+                description: 'Công phu tiến sâu hơn, cả năng lực nghe (năng văn) và đối tượng bị nghe (sở văn) đều được quán chiếu là không thật, và cuối cùng cả hai đều tan biến. Đây là giai đoạn phá vỡ kết Căn (chấp vào chính nhĩ căn).'
             },
             {
-                title: '4. Giác sở giác không',
-                description: 'Khi năng văn và sở văn đã hết, hành giả không an trụ trong trạng thái đó. Tiếp tục quán chiếu, cả năng lực giác biết (năng giác) và đối tượng bị giác biết (sở giác) cũng đều được nhận ra là không. Đây là giai đoạn phá vỡ sự chấp trước vào tâm năng giác.'
+                title: '4. Tận văn bất trụ, giác sở giác không',
+                description: 'Khi năng văn và sở văn đã hết, hành giả không an trụ trong trạng thái đó. Tiếp tục quán chiếu, cả năng lực giác biết (năng giác) và đối tượng bị giác biết (sở giác) cũng đều được nhận ra là không. Đây là giai đoạn phá vỡ kết Giác (chấp vào tâm năng giác).'
             },
             {
-                title: '5. Không giác cực viên',
-                description: 'Trí tuệ quán không đã đến mức viên mãn, hành giả phá vỡ cả sự chấp trước vi tế vào chính khái niệm "không" và đối tượng của nó. Cái không và cái bị cho là không cũng bị tiêu diệt. Đây là giai đoạn phá vỡ sự chấp trước vào tánh không.'
+                title: '5. Không giác cực viên, không sở không diệt',
+                description: 'Trí tuệ quán không đã đến mức viên mãn, hành giả phá vỡ cả sự chấp trước vi tế vào chính khái niệm "không" và đối tượng của nó. Cái không và cái bị cho là không cũng bị tiêu diệt. Đây là giai đoạn phá vỡ kết Không (chấp vào tánh không).'
             },
             {
-                title: '6. Tịch diệt hiện tiền',
-                description: 'Khi tất cả các pháp đối đãi sinh diệt đã hoàn toàn bị tiêu trừ, bản thể Niết bàn chân thật, vắng lặng, bất sinh bất diệt (tịch diệt) liền hiển hiện trọn vẹn. Đây là lúc chứng nhập Viên Thông.'
+                title: '6. Sinh diệt ký diệt, tịch diệt hiện tiền',
+                description: 'Khi tất cả các pháp đối đãi sinh diệt đã hoàn toàn bị tiêu trừ, bản thể Niết bàn chân thật, vắng lặng, bất sinh bất diệt (tịch diệt) liền hiển hiện trọn vẹn. Đây là giai đoạn phá vỡ kết Diệt (chấp vào sự diệt tận), và là lúc chứng nhập Viên Thông.'
             }
         ],
         maSu: {
@@ -334,6 +336,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: 'Tham cầu nhập không', phenomenon: 'Tham cầu nhập vào cõi không.', cause: 'Do tâm chấp vào sự đoạn diệt, bị "thiên đại tướng tinh linh" dựa vào.', correctView: 'Chân không không phải là đoạn diệt. Cần tránh rơi vào ngoan không.' },
                     { title: 'Tham cầu sống lâu', phenomenon: 'Tham cầu sống lâu.', cause: 'Do tâm tham luyến sinh mạng, bị "ma ở cõi trời Tự Tại" dựa vào.', correctView: 'Sinh mạng là vô thường. Cần cầu giải thoát sinh tử, không phải cầu sống lâu.' }
                 ]
+            },
+            hanh: {
+                title: 'Hành Ấm Ma Cảnh',
+                description: 'Hành ấm là dòng chảy vi tế của sự suy nghĩ, ý chí, và các động lực tâm thức. Ma cảnh ở đây rất vi tế, chủ yếu là các tà kiến về vũ trụ và nhân quả.',
+                items: [
+                    { title: 'Chấp hai thứ vô nhân', phenomenon: 'Cho rằng vạn vật tự nhiên sinh, không có nhân quả.', cause: 'Do tưởng ấm đã diệt, thấy được sự lưu chuyển của 8 vạn 4 ngàn niệm, nhưng không thấy được cội nguồn nên chấp vào đoạn kiến.', correctView: 'Vạn pháp đều do nhân duyên sinh. Chấp vô nhân là tà kiến nguy hiểm, phá hoại nền tảng Phật pháp.' },
+                    { title: 'Chấp bốn thứ viên thường', phenomenon: 'Cho rằng tâm, đất, nước, lửa, gió... là thường hằng, không biến đổi.', cause: 'Do quán sát thấy các pháp dường như không đổi, sinh ra tà kiến chấp thường.', correctView: 'Tất cả các pháp hữu vi đều vô thường. Chấp thường sẽ không thể thấy được chân lý sinh diệt.' },
+                    { title: 'Chấp bốn thứ điên đảo', phenomenon: 'Cho rằng có một "ngã" thường hằng, hoặc cho rằng vạn vật vừa thường vừa vô thường, vừa có vừa không...', cause: 'Do tâm suy lường, phân biệt vi tế, tạo ra các lý thuyết mâu thuẫn.', correctView: 'Các lý thuyết này đều là hý luận, do vọng tưởng sinh. Cần trở về với thực tại, không suy lường.' },
+                    { title: 'Chấp bốn thứ có biên tế', phenomenon: 'Cho rằng thế giới có giới hạn về không gian và thời gian.', cause: 'Do tâm thức còn bị giới hạn trong khái niệm, không thể nhận ra tính vô biên của pháp giới.', correctView: 'Chân tâm vốn không có trong ngoài, không có giới hạn. Chấp có biên tế là do vọng tưởng.' },
+                    { title: 'Chấp bốn thứ bất tử', phenomenon: 'Cho rằng có thể đạt đến sự bất tử bằng cách di chuyển hoặc biến hóa thân tâm.', cause: 'Do tâm tham luyến sự sống và sợ hãi cái chết, sinh ra các tà thuyết về sự bất tử.', correctView: 'Sự bất tử chân thật là Niết bàn, là sự chấm dứt sinh diệt, không phải là sự kéo dài sinh mạng.' },
+                    { title: 'Chấp sau khi chết có tướng', phenomenon: 'Cho rằng sau khi chết vẫn còn một cái "ta" tồn tại dưới một hình tướng nào đó.', cause: 'Do chấp vào sự tồn tại của một linh hồn hay một bản ngã thường hằng.', correctView: 'Đây là thường kiến. Cần quán chiếu lý vô ngã, vạn pháp do duyên hợp, không có tự thể.' },
+                    { title: 'Chấp sau khi chết không có tướng', phenomenon: 'Cho rằng sau khi chết là hết, không còn gì cả.', cause: 'Do chấp vào sự đoạn diệt, không tin vào nhân quả, nghiệp báo.', correctView: 'Đây là đoạn kiến. Cần hiểu rằng nghiệp lực vẫn tiếp nối, dẫn dắt tái sinh.' },
+                    { title: 'Chấp sau khi chết vừa có vừa không', phenomenon: 'Lập ra các lý thuyết nước đôi, cho rằng sau khi chết vừa có vừa không.', cause: 'Do tâm trí rối loạn, không thể quyết đoán, rơi vào hý luận.', correctView: 'Đây là sự trốn tránh thực tại, không dám đối diện với chân lý. Cần trở về chánh niệm.' },
+                    { title: 'Chấp sau khi chết chẳng phải có chẳng phải không', phenomenon: 'Cho rằng trạng thái sau khi chết không thể diễn tả, không thuộc phạm trù có-không.', cause: 'Do tâm trí rơi vào sự mông lung, ngu muội, không có trí tuệ soi xét.', correctView: 'Đây là tà kiến ngu si. Cần phải học hỏi giáo lý để có chánh kiến.' },
+                    { title: 'Chấp năm thứ Niết-bàn hiện tại', phenomenon: 'Cho rằng sự hưởng thụ dục lạc ở các cõi trời Dục giới chính là Niết-bàn.', cause: 'Do tâm tham đắm dục lạc, không hiểu được bản chất của giải thoát.', correctView: 'Niết-bàn là sự tịch diệt, vắng lặng, không phải là sự hưởng thụ dục lạc. Đây là tà kiến nguy hiểm nhất.' }
+                ]
+            },
+            thuc: {
+                title: 'Thức Ấm Ma Cảnh',
+                description: 'Thức ấm là tầng tâm thức vi tế nhất, là nền tảng của mọi nhận thức. Ma cảnh ở đây là những chấp trước tinh vi nhất vào các trạng thái thiền định và bản thể.',
+                items: [
+                    { title: 'Chấp nơi trở về là nhân', phenomenon: 'Cho rằng có một nơi chốn, một cội nguồn ban đầu mà vạn vật từ đó sinh ra và sẽ trở về.', cause: 'Do tâm còn chấp vào một "nhân" đầu tiên, một "thượng đế" hay "đấng tạo hóa".', correctView: 'Vạn pháp duyên sinh, vô thủy vô chung. Chấp có một cội nguồn ban đầu là rơi vào ngoại đạo.' },
+                    { title: 'Chấp năng lực của mình là nhân', phenomenon: 'Cho rằng mình có năng lực tạo ra vạn vật.', cause: 'Do tâm ngã mạn vi tế, cho rằng năng lực của tâm mình là vô biên, đồng với Phật.', correctView: 'Đây là sự đồng hóa vọng tâm với Chân tâm. Phải nhận ra tâm mình vẫn còn trong sinh diệt.' },
+                    { title: 'Chấp vào một cái "ta" thường hằng', phenomenon: 'Cho rằng có một cái "ta" không thay đổi, là nền tảng cho mọi sự biến đổi.', cause: 'Do tâm còn chấp vào một bản ngã vi tế, không nhận ra lý vô ngã.', correctView: 'Đây là tà kiến của ngoại đạo. Cần quán chiếu ngũ uẩn vô ngã để phá trừ chấp trước này.' },
+                    { title: 'Chấp vào sự biết khắp', phenomenon: 'Cho rằng vạn vật đều là do tâm mình biết mà có, ngoài tâm không có pháp.', cause: 'Do rơi vào duy tâm cực đoan, không hiểu được tính duyên sinh của vạn pháp.', correctView: 'Đây là tà kiến chấp vào Thức. Cần hiểu rằng tâm và cảnh đều là huyễn, nương nhau mà có.' },
+                    { title: 'Chấp vào sự sinh khởi', phenomenon: 'Cho rằng có thể từ hư không mà sinh ra vạn vật, hoặc từ đoạn diệt mà sinh ra cái mới.', cause: 'Do tâm còn chấp vào các khái niệm sinh-diệt, không-có.', correctView: 'Đây là tà kiến đoạn-thường. Vạn pháp bất sinh bất diệt, chỉ là sự chuyển biến của duyên.' },
+                    { title: 'Chấp có nơi trở về', phenomenon: 'Cho rằng sau khi tu hành sẽ có một nơi để trở về, một cõi Tịnh độ để an trú.', cause: 'Do tâm còn tham luyến vào một cảnh giới, một nơi chốn.', correctView: 'Tịnh độ chân thật là ở tại tâm thanh tịnh. Chấp vào một nơi chốn bên ngoài sẽ không đạt được giải thoát.' },
+                    { title: 'Chấp vào một cái "ta" vi tế', phenomenon: 'Cho rằng dù thân xác hoại diệt, vẫn còn một cái "ta" tinh anh, bất hoại.', cause: 'Đây là sự chấp ngã vi tế nhất, khó phá trừ nhất.', correctView: 'Phải dùng trí tuệ quán chiếu đến cùng để thấy rõ không có một cái "ta" nào, dù là thô hay tế.' },
+                    { title: 'Chấp vào thiền định', phenomenon: 'An trú trong các trạng thái thiền định cao, cho đó là Niết-bàn.', cause: 'Do tham luyến sự an lạc, tĩnh lặng của thiền định, không muốn xả bỏ.', correctView: 'Thiền định chỉ là phương tiện, không phải cứu cánh. Phải xả bỏ cả các tầng thiền để đạt đến vô trụ.' },
+                    { title: 'Chấp vào trí tuệ', phenomenon: 'Cho rằng trí tuệ phân biệt, tri giải của mình là chân lý.', cause: 'Do tâm ngã mạn, cho rằng sự hiểu biết của mình là rốt ráo.', correctView: 'Tri giải không phải là thực chứng. Cần buông bỏ mọi tri kiến để thể nhập vào thực tại bất khả tư nghì.' },
+                    { title: 'Chấp vào sự viên dung', phenomenon: 'Rơi vào trạng thái viên dung, cho rằng tất cả đều là một, không còn phân biệt thiện ác, nhiễm tịnh.', cause: 'Do tâm còn kẹt trong một trạng thái định, không thể khởi diệu dụng để độ sanh.', correctView: 'Đây là sự viên dung chết, không phải là viên dung sống động của Phật. Cần phải từ thể khởi dụng, tùy duyên độ sanh.' }
+                ]
             }
         }
     };
@@ -344,14 +378,14 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.toggle('hidden');
     });
     
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
     const sections = document.querySelectorAll('main section');
 
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 60) {
+            if (pageYOffset >= sectionTop - 70) {
                 current = section.getAttribute('id');
             }
         });
@@ -360,6 +394,14 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.remove('active');
             if (link.getAttribute('href').includes(current)) {
                 link.classList.add('active');
+            }
+        });
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.offsetParent !== null) {
+                mobileMenu.classList.add('hidden');
             }
         });
     });
@@ -385,12 +427,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         'rgba(188, 143, 143, 0.7)'
                     ],
                     borderColor: [
-                        'rgba(212, 175, 55, 1)',
-                        'rgba(119, 136, 153, 1)',
-                        'rgba(70, 130, 180, 1)',
-                        'rgba(188, 143, 143, 1)'
+                        '#D4AF37',
+                        '#778899',
+                        '#4682B4',
+                        '#BC8F8F'
                     ],
-                    borderWidth: 1
+                    borderWidth: 1.5,
+                    hoverOffset: 10
                 }]
             },
             options: {
@@ -399,6 +442,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 plugins: {
                     legend: {
                         position: 'top',
+                        labels: {
+                            font: {
+                                family: "'Inter', sans-serif",
+                                size: 14
+                            }
+                        }
                     },
                     tooltip: {
                         callbacks: {
@@ -429,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const filteredData = category ? data.phapMon.filter(item => item.category === category) : data.phapMon;
             detailsContainer.innerHTML = `
                 <h3 class="text-2xl font-bold text-center lg:text-left text-stone-700">${category || 'Tất Cả Pháp Môn'}</h3>
-                <div class="grid sm:grid-cols-2 gap-4">
+                <div class="grid sm:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2">
                     ${filteredData.map(item => `
                         <div class="card bg-white p-4 rounded-lg border border-stone-200">
                             <p class="font-semibold text-stone-800">${item.name}</p>
@@ -447,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const stepperContainer = document.getElementById('nhiCanStepper');
         data.nhiCan.forEach((step, index) => {
             const stepElement = document.createElement('div');
-            stepElement.className = 'step-item relative flex items-start pb-12';
+            stepElement.className = 'step-item relative flex items-start pb-12 cursor-pointer';
             stepElement.innerHTML = `
                 <div class="flex-shrink-0">
                     <div class="step-circle h-10 w-10 rounded-full bg-stone-200 flex items-center justify-center font-bold text-stone-600 transition-colors duration-300">
@@ -494,10 +543,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span class="accordion-icon text-2xl text-stone-500 transform transition-transform duration-300">+</span>
                             </button>
                             <div class="accordion-content px-4">
-                                <div class="py-4 border-t border-stone-200">
+                                <div class="py-4 border-t border-stone-200 space-y-2">
                                     <p><strong>Hiện tượng:</strong> ${item.phenomenon}</p>
                                     <p><strong>Nguyên nhân:</strong> ${item.cause}</p>
-                                    <p class="mt-2 text-amber-800"><strong>Chánh kiến:</strong> ${item.correctView}</p>
+                                    <p class="mt-2 text-amber-800"><strong>Chánh kiến (Cách hàng phục):</strong> ${item.correctView}</p>
                                 </div>
                             </div>
                         </div>
@@ -509,8 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     const icon = header.querySelector('.accordion-icon');
-                    const item = header.parentElement;
-
+                    
                     if (content.style.maxHeight) {
                         content.style.maxHeight = null;
                         icon.textContent = '+';
