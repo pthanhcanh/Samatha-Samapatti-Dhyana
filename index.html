@@ -13,7 +13,7 @@
     <!-- Application Structure Plan: The application is structured as a single-page, scrollable journey designed for intuitive exploration of complex Buddhist concepts. It begins with a foundational introduction (Context), then moves to the core philosophical dichotomy (The Path & The Goal), followed by interactive explorations of practical methods (25 Methods, Ear Faculty Practice), foundational requirements (Precepts, Mantra, View), and potential pitfalls (50 Skandha-maras). This thematic, non-linear structure was chosen over a direct report-to-page mapping to enhance user understanding by grouping related concepts and allowing users to dive into topics of interest. Key interactions like chart filtering, step-by-step process reveals, and tabbed content sections are used to manage information density and guide the user through a progressive discovery, making abstract content more tangible and digestible. -->
     <!-- Visualization & Content Choices: 
         1. 25 Methods: Report Info -> List of 25 methods categorized by 6 Trần, 6 Căn, 6 Thức, 7 Đại. Goal -> Organize & Compare. Viz/Method -> Interactive Doughnut Chart (Chart.js) & dynamic text cards. Interaction -> Clicking a chart segment filters the cards to show only methods in that category. Justification -> Visually represents the categories and their proportions, while interaction allows focused exploration without overwhelming the user with a long list. Library -> Chart.js.
-        2. 6 Stages of Ear Practice: Report Info -> A 6-step sequential process. Goal -> Show Change/Process. Viz/Method -> Vertical Stepper/Timeline (HTML/CSS/JS). Interaction -> Clicking a step highlights it and reveals its detailed explanation. Justification -> Clearly visualizes the progression and allows the user to study each stage in detail. Library -> Vanilla JS.
+        2. 6 Stages of Ear Practice: Report Info -> A 6-step sequential process. Goal -> Show Change/Process. Viz/Method -> Vertical Stepper/Timeline (HTML/CSS/JS). Interaction -> Clicking a step highlights it and reveals its detailed explanation, explicitly stating which of the "six knots" is untied at each stage. Justification -> Clearly visualizes the progression and allows the user to study each stage in detail, directly linking the practice to the core concept of untying knots. Library -> Vanilla JS.
         3. 50 Skandha-maras: Report Info -> 50 detailed descriptions of demonic states across 5 Skandhas. Goal -> Organize & Inform. Viz/Method -> Tabbed interface with accordions (HTML/CSS/JS). Interaction -> Users select a Skandha (tab), then click on a specific state to expand its details (phenomenon, cause, correct view). Justification -> Manages a large volume of complex text in a structured, accessible way, preventing cognitive overload. Library -> Vanilla JS.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
@@ -124,7 +124,7 @@
                     <ul class="space-y-2 text-gray-700">
                         <li class="flex items-start"><span class="mr-2 mt-1 text-amber-600">✦</span> <strong>Kim Cang Vương Bảo Giác:</strong> Sự giác ngộ rắn chắc như kim cương, phá tan mọi ảo tưởng.</li>
                         <li class="flex items-start"><span class="mr-2 mt-1 text-amber-600">✦</span> <strong>Đàn Chỉ Siêu Vô Học:</strong> Năng lực giải thoát siêu việt, có thể vượt qua quả vị A-la-hán trong khoảnh khắc.</li>
-                        <li class="flex items-start"><span class="mr-2 mt-1 text-amber-600">✦</span> <strong>Nơi Xuất Sinh Chư Phật:</strong> Là cội nguồn, nền tảng để chư Phật thành tựu giác ngộ.</li>
+                        <li class="flex items-start"><span class="mr-2 mt-1 text-amber-600">✦</span> <strong>Nơi Xuất Sinh của Chư Phật:</strong> Là cội nguồn, nền tảng để chư Phật thành tựu giác ngộ.</li>
                     </ul>
                 </div>
                 <div class="card bg-white p-8 rounded-xl shadow-md">
@@ -147,7 +147,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold">25 Pháp Môn Viên Thông</h2>
                 <p class="max-w-3xl mx-auto mt-4 text-gray-600">
-                    Kinh trình bày 25 pháp môn mà các vị Thánh đã tu chứng, cho thấy mọi hiện tượng đều có thể là cửa ngõ vào đạo. Hãy tương tác với biểu đồ để khám phá các pháp môn theo từng nhóm.
+                    Kinh trình bày 25 pháp môn mà các vị Thánh đã tu chứng, cho thấy mọi hiện tượng đều có thể là cửa ngõ vào đạo. Hãy tương tác với biểu đồ để khám phá chi tiết từng pháp môn.
                 </p>
             </div>
             <div class="grid lg:grid-cols-2 gap-8 items-center">
@@ -163,7 +163,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold">Pháp Tu Trọng Yếu: Nhĩ Căn Viên Thông</h2>
                 <p class="max-w-3xl mx-auto mt-4 text-gray-600">
-                    Bồ tát Văn Thù đã chọn pháp môn của Bồ tát Quán Thế Âm là phù hợp nhất cho chúng sanh cõi Ta Bà. Đây là lộ trình tu chứng "từ trong cái nghe mà vào", gồm 6 giai đoạn tuần tự để cởi bỏ sáu cái kết trói buộc.
+                    Bồ tát Văn Thù đã chọn pháp môn của Bồ tát Quán Thế Âm là phù hợp nhất cho chúng sanh cõi Ta Bà. Đây chính là **pháp mở sáu nút** (lục kết), một lộ trình tu chứng "từ trong cái nghe mà vào", gồm 6 giai đoạn tuần tự để cởi bỏ từng nút thắt trói buộc chúng ta trong luân hồi.
                 </p>
             </div>
             <div id="nhiCanStepper" class="max-w-3xl mx-auto">
@@ -236,56 +236,62 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const data = {
         phapMon: [
-            { category: 'Sáu Trần', name: 'Thanh trần', practitioner: 'Tôn giả Kiều Trần Như' },
-            { category: 'Sáu Trần', name: 'Sắc trần', practitioner: 'Tôn giả Ưu-ba-ni-sa-đà' },
-            { category: 'Sáu Trần', name: 'Hương trần', practitioner: 'Hương Nghiêm Đồng Tử' },
-            { category: 'Sáu Trần', name: 'Vị trần', practitioner: 'Bồ tát Dược Vương và Dược Thượng' },
-            { category: 'Sáu Trần', name: 'Xúc trần', practitioner: 'Bồ tát Bạt-đà-bà-la' },
-            { category: 'Sáu Trần', name: 'Pháp trần', practitioner: 'Tôn giả Đại Ca Diếp' },
-            { category: 'Sáu Căn', name: 'Nhãn căn', practitioner: 'Tôn giả A-na-luật' },
-            { category: 'Sáu Căn', name: 'Tị căn', practitioner: 'Tôn giả Chu-lợi-bàn-đà-già' },
-            { category: 'Sáu Căn', name: 'Thiệt căn', practitioner: 'Tôn giả Kiều-phạm-ba-đề' },
-            { category: 'Sáu Căn', name: 'Thân căn', practitioner: 'Tôn giả Tất-lăng-già-bà-tha' },
-            { category: 'Sáu Căn', name: 'Ý căn', practitioner: 'Tôn giả Tu-bồ-đề' },
-            { category: 'Sáu Căn', name: 'Nhĩ căn', practitioner: 'Bồ tát Quán Thế Âm' },
-            { category: 'Sáu Thức', name: 'Nhãn thức', practitioner: 'Tôn giả Xá-lợi-phất' },
-            { category: 'Sáu Thức', name: 'Nhĩ thức', practitioner: 'Bồ tát Phổ Hiền' },
-            { category: 'Sáu Thức', name: 'Tỷ thức', practitioner: 'Tôn giả Tôn-đà-la-nan-đà' },
-            { category: 'Sáu Thức', name: 'Thiệt thức', practitioner: 'Tôn giả Phú-lâu-na' },
-            { category: 'Sáu Thức', name: 'Thân thức', practitioner: 'Tôn giả Ưu-ba-ly' },
-            { category: 'Sáu Thức', name: 'Ý thức', practitioner: 'Tôn giả Mục-kiền-liên' },
-            { category: 'Bảy Đại', name: 'Hỏa đại', practitioner: 'Ô-sô-sắc-ma' },
-            { category: 'Bảy Đại', name: 'Địa đại', practitioner: 'Trì Địa Bồ tát' },
-            { category: 'Bảy Đại', name: 'Thủy đại', practitioner: 'Nguyệt Quang Đồng Tử' },
-            { category: 'Bảy Đại', name: 'Phong đại', practitioner: 'Lưu Ly Quang Pháp Vương Tử' },
-            { category: 'Bảy Đại', name: 'Không đại', practitioner: 'Hư Không Tạng Bồ tát' },
-            { category: 'Bảy Đại', name: 'Thức đại', practitioner: 'Bồ tát Di Lặc' },
-            { category: 'Bảy Đại', name: 'Kiến đại', practitioner: 'Bồ tát Đại Thế Chí' },
+            { category: 'Sáu Trần', name: 'Thanh trần', practitioner: 'Tôn giả Kiều Trần Như', description: 'Quán chiếu âm thanh, nhận ra tiếng nói của Phật là vô thường, không thật, từ đó chứng ngộ bản tánh vắng lặng của các pháp.' },
+            { category: 'Sáu Trần', name: 'Sắc trần', practitioner: 'Tôn giả Ưu-ba-ni-sa-đà', description: 'Quán chiếu các tướng bất tịnh của thân thể, nhận ra tất cả sắc tướng đều là huyễn hóa, không sạch, cuối cùng trở về với bản thể không tịch.' },
+            { category: 'Sáu Trần', name: 'Hương trần', practitioner: 'Hương Nghiêm Đồng Tử', description: 'Quán chiếu mùi hương, nhận ra hương không từ vật, không từ không, không từ mũi mà do duyên hợp. Từ đó thấu suốt các pháp đều như huyễn.' },
+            { category: 'Sáu Trần', name: 'Vị trần', practitioner: 'Bồ tát Dược Vương và Dược Thượng', description: 'Quán chiếu các vị (mặn, ngọt, chua, cay...), nhận ra vị không có tự tánh, chỉ do phân biệt của lưỡi mà có, từ đó ngộ nhập Phật tánh.' },
+            { category: 'Sáu Trần', name: 'Xúc trần', practitioner: 'Bồ tát Bạt-đà-bà-la', description: 'Quán chiếu cảm giác xúc chạm khi tắm, nhận ra cả thân (năng xúc) và nước (sở xúc) đều không thật, từ đó chứng đắc Vô sở hữu.' },
+            { category: 'Sáu Trần', name: 'Pháp trần', practitioner: 'Tôn giả Đại Ca Diếp', description: 'Quán chiếu các pháp trần (ý niệm), nhận ra chúng đều là vọng tưởng, không có tự thể, từ đó tâm được không tịch, chứng A-la-hán.' },
+            { category: 'Sáu Căn', name: 'Nhãn căn', practitioner: 'Tôn giả A-na-luật', description: 'Dù mất mắt thịt, ngài xoay tánh thấy vào trong, nhận ra năng lực thấy không phụ thuộc vào con mắt, nó trùm khắp mười phương, từ đó phát thiên nhãn thông.' },
+            { category: 'Sáu Căn', name: 'Tị căn', practitioner: 'Tôn giả Chu-lợi-bàn-đà-già', description: 'Quán chiếu hơi thở ra vào qua mũi, làm tâm lắng đọng, vọng tưởng tiêu tan, từ đó phát sinh trí tuệ, chứng quả A-la-hán.' },
+            { category: 'Sáu Căn', name: 'Thiệt căn', practitioner: 'Tôn giả Kiều-phạm-ba-đề', description: 'Quán chiếu vị của lưỡi, nhận ra tánh biết vị không có tự thể, từ đó diệt trừ tâm phân biệt, chứng nhập pháp tánh.' },
+            { category: 'Sáu Căn', name: 'Thân căn', practitioner: 'Tôn giả Tất-lăng-già-bà-tha', description: 'Quán chiếu cảm giác đau đớn nơi thân, nhận ra cả cái đau và thân này đều là huyễn, không có ngã, từ đó tâm được giải thoát.' },
+            { category: 'Sáu Căn', name: 'Ý căn', practitioner: 'Tôn giả Tu-bồ-đề', description: 'Quán chiếu ý căn và các pháp do nó sinh ra đều là không, phá vỡ chấp ngã và chấp pháp, từ đó chứng nhập tánh không viên mãn.' },
+            { category: 'Sáu Căn', name: 'Nhĩ căn', practitioner: 'Bồ tát Quán Thế Âm', description: 'Phản văn văn tự tánh - xoay cái nghe vào trong để nghe chính tánh nghe, tuần tự cởi bỏ 6 kết縛, từ đó chứng nhập Viên Thông, là pháp môn tối thắng.' },
+            { category: 'Sáu Thức', name: 'Nhãn thức', practitioner: 'Tôn giả Xá-lợi-phất', description: 'Quán chiếu nhãn thức, nhận ra nó chỉ là sự phân biệt hư vọng, không có tự thể, từ đó tâm được thanh tịnh, trở về với Chân tâm.' },
+            { category: 'Sáu Thức', name: 'Nhĩ thức', practitioner: 'Bồ tát Phổ Hiền', description: 'Quán chiếu nhĩ thức, nhận ra nó có khả năng phân biệt tự tại, không bị ngăn ngại, từ đó dùng năng lực này để phân thân ứng hóa khắp nơi.' },
+            { category: 'Sáu Thức', name: 'Tỷ thức', practitioner: 'Tôn giả Tôn-đà-la-nan-đà', description: 'Quán chiếu tỷ thức, nhận ra hơi thở ra vào vốn không thật, từ đó diệt trừ vọng tưởng, tâm được thanh tịnh, không còn lậu hoặc.' },
+            { category: 'Sáu Thức', name: 'Thiệt thức', practitioner: 'Tôn giả Phú-lâu-na', description: 'Quán chiếu thiệt thức, nhận ra năng lực thuyết pháp không có tự thể, từ đó dùng sư tử hống để hàng phục ma oán, xiển dương chánh pháp.' },
+            { category: 'Sáu Thức', name: 'Thân thức', practitioner: 'Tôn giả Ưu-ba-ly', description: 'Quán chiếu thân thức, dùng giới luật để nhiếp phục thân, từ đó thân tâm thanh tịnh, chứng đắc sự an lạc, giải thoát.' },
+            { category: 'Sáu Thức', name: 'Ý thức', practitioner: 'Tôn giả Mục-kiền-liên', description: 'Quán chiếu ý thức, nhận ra nó vốn thanh tịnh, không bị ngăn ngại, từ đó phát sinh thần thông, du hành các cõi một cách tự tại.' },
+            { category: 'Bảy Đại', name: 'Hỏa đại', practitioner: 'Ô-sô-sắc-ma', description: 'Quán chiếu hỏa đại, chuyển hóa lửa dâm dục thành lửa trí tuệ, thiêu đốt mọi phiền não, từ đó chứng đắc quả vị.' },
+            { category: 'Bảy Đại', name: 'Địa đại', practitioner: 'Trì Địa Bồ tát', description: 'Quán chiếu địa đại, nhận ra bản tánh của đất vốn bình đẳng, không phân biệt, từ đó tâm được bình đẳng, không còn chướng ngại.' },
+            { category: 'Bảy Đại', name: 'Thủy đại', practitioner: 'Nguyệt Quang Đồng Tử', description: 'Quán chiếu thủy đại, nhận ra tánh nước lưu chuyển, không cố định, từ đó tâm được tự tại, không còn chấp trước.' },
+            { category: 'Bảy Đại', name: 'Phong đại', practitioner: 'Lưu Ly Quang Pháp Vương Tử', description: 'Quán chiếu phong đại, nhận ra tánh gió vốn không, không có nơi đến nơi đi, từ đó ngộ được bản thể Chân tâm vốn vô sinh.' },
+            { category: 'Bảy Đại', name: 'Không đại', practitioner: 'Hư Không Tạng Bồ tát', description: 'Quán chiếu không đại, nhận ra hư không và Chân tâm đồng một thể, bao trùm vạn vật, từ đó chứng nhập pháp thân.' },
+            { category: 'Bảy Đại', name: 'Thức đại', practitioner: 'Bồ tát Di Lặc', description: 'Quán chiếu thức đại, nhận ra vạn pháp duy thức, tất cả đều do tâm phân biệt mà có, từ đó chứng đắc viên thành thật tánh.' },
+            { category: 'Bảy Đại', name: 'Kiến đại', practitioner: 'Bồ tát Đại Thế Chí', description: 'Quán chiếu kiến đại (tánh thấy), dùng pháp môn niệm Phật, khiến Phật lực và tự lực tương ưng, không cần phương tiện khác mà tự được tâm khai.' },
         ],
         nhiCan: [
             {
                 title: '1. Sơ ư văn trung, nhập lưu vong sở',
-                description: 'Ban đầu ở trong cái nghe, xoay năng lực nghe vào trong (nhập lưu) thay vì đuổi theo âm thanh bên ngoài. Khi sự chú tâm vào "tánh nghe" trở nên miên mật, đối tượng âm thanh (sở văn) sẽ tự động bị quên lãng (vong sở). Đây là bước phá vỡ kết Động (chấp vào âm thanh có).'
+                description: 'Ban đầu ở trong cái nghe, xoay năng lực nghe vào trong (nhập lưu) thay vì đuổi theo âm thanh bên ngoài. Khi sự chú tâm vào "tánh nghe" trở nên miên mật, đối tượng âm thanh (sở văn) sẽ tự động bị quên lãng (vong sở).',
+                knot: 'Nút thắt được mở: Kết Động (chấp vào sự tồn tại của âm thanh).'
             },
             {
                 title: '2. Sở nhập ký tịch, động tĩnh nhị tướng, liễu nhiên bất sinh',
-                description: 'Khi đối tượng âm thanh đã lặng, hành giả không kẹt vào trạng thái tĩnh lặng đối lập. Cả hai tướng Động (có tiếng) và Tĩnh (không tiếng) đều được nhận ra là những trạng thái đối đãi, hư vọng và không còn khởi lên trong tâm. Đây là bước phá vỡ kết Tĩnh (chấp vào âm thanh không).'
+                description: 'Khi đối tượng âm thanh đã lặng, hành giả không kẹt vào trạng thái tĩnh lặng đối lập. Cả hai tướng Động (có tiếng) và Tĩnh (không tiếng) đều được nhận ra là những trạng thái đối đãi, hư vọng và không còn khởi lên trong tâm.',
+                knot: 'Nút thắt được mở: Kết Tĩnh (chấp vào sự không có âm thanh).'
             },
             {
                 title: '3. Như thị tiệm tăng, văn sở văn tận',
-                description: 'Công phu tiến sâu hơn, cả năng lực nghe (năng văn) và đối tượng bị nghe (sở văn) đều được quán chiếu là không thật, và cuối cùng cả hai đều tan biến. Đây là giai đoạn phá vỡ kết Căn (chấp vào chính nhĩ căn).'
+                description: 'Công phu tiến sâu hơn, cả năng lực nghe (năng văn) và đối tượng bị nghe (sở văn) đều được quán chiếu là không thật, và cuối cùng cả hai đều tan biến.',
+                knot: 'Nút thắt được mở: Kết Căn (chấp vào sự tồn tại của nhĩ căn).'
             },
             {
                 title: '4. Tận văn bất trụ, giác sở giác không',
-                description: 'Khi năng văn và sở văn đã hết, hành giả không an trụ trong trạng thái đó. Tiếp tục quán chiếu, cả năng lực giác biết (năng giác) và đối tượng bị giác biết (sở giác) cũng đều được nhận ra là không. Đây là giai đoạn phá vỡ kết Giác (chấp vào tâm năng giác).'
+                description: 'Khi năng văn và sở văn đã hết, hành giả không an trụ trong trạng thái đó. Tiếp tục quán chiếu, cả năng lực giác biết (năng giác) và đối tượng bị giác biết (sở giác) cũng đều được nhận ra là không.',
+                knot: 'Nút thắt được mở: Kết Giác (chấp vào tâm năng giác, năng biết).'
             },
             {
                 title: '5. Không giác cực viên, không sở không diệt',
-                description: 'Trí tuệ quán không đã đến mức viên mãn, hành giả phá vỡ cả sự chấp trước vi tế vào chính khái niệm "không" và đối tượng của nó. Cái không và cái bị cho là không cũng bị tiêu diệt. Đây là giai đoạn phá vỡ kết Không (chấp vào tánh không).'
+                description: 'Trí tuệ quán không đã đến mức viên mãn, hành giả phá vỡ cả sự chấp trước vi tế vào chính khái niệm "không" và đối tượng của nó. Cái không và cái bị cho là không cũng bị tiêu diệt.',
+                knot: 'Nút thắt được mở: Kết Không (chấp vào trí tuệ quán không).'
             },
             {
                 title: '6. Sinh diệt ký diệt, tịch diệt hiện tiền',
-                description: 'Khi tất cả các pháp đối đãi sinh diệt đã hoàn toàn bị tiêu trừ, bản thể Niết bàn chân thật, vắng lặng, bất sinh bất diệt (tịch diệt) liền hiển hiện trọn vẹn. Đây là giai đoạn phá vỡ kết Diệt (chấp vào sự diệt tận), và là lúc chứng nhập Viên Thông.'
+                description: 'Khi tất cả các pháp đối đãi sinh diệt đã hoàn toàn bị tiêu trừ, bản thể Niết bàn chân thật, vắng lặng, bất sinh bất diệt (tịch diệt) liền hiển hiện trọn vẹn.',
+                knot: 'Nút thắt được mở: Kết Diệt (chấp vào sự diệt tận các pháp sinh diệt).'
             }
         ],
         maSu: {
@@ -478,11 +484,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const filteredData = category ? data.phapMon.filter(item => item.category === category) : data.phapMon;
             detailsContainer.innerHTML = `
                 <h3 class="text-2xl font-bold text-center lg:text-left text-stone-700">${category || 'Tất Cả Pháp Môn'}</h3>
-                <div class="grid sm:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2">
+                <div class="grid sm:grid-cols-1 gap-4 max-h-[450px] overflow-y-auto pr-2">
                     ${filteredData.map(item => `
                         <div class="card bg-white p-4 rounded-lg border border-stone-200">
                             <p class="font-semibold text-stone-800">${item.name}</p>
-                            <p class="text-sm text-gray-500">${item.practitioner}</p>
+                            <p class="text-sm text-gray-500 mb-2">${item.practitioner}</p>
+                            <p class="text-sm text-gray-700">${item.description}</p>
                         </div>
                     `).join('')}
                 </div>
@@ -506,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="ml-4">
                     <h4 class="step-title text-xl font-bold text-stone-700 transition-colors duration-300">${step.title}</h4>
                     <p class="mt-2 text-gray-600">${step.description}</p>
+                    <p class="mt-3 font-semibold text-teal-700 bg-teal-50 p-3 rounded-md">${step.knot}</p>
                 </div>
                 ${index < data.nhiCan.length - 1 ? '<div class="absolute left-5 top-10 h-full w-0.5 bg-stone-200"></div>' : ''}
             `;
